@@ -170,6 +170,12 @@ events.forEach(function (event) {
     });
 });
 
+events.forEach(function (event) {
+    var commission = (event.price / 100) * 30
+    event.commission.insurance = commission / 2
+    event.commission.treasury = event.persons
+    event.commission.privateaser = commission - commission / 2 - event.persons
+});
 
 
 console.log(bars);
