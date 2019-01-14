@@ -184,6 +184,30 @@ events.forEach(function (event) {
     }
 });
 
+actors.forEach(function (actor) {
+    events.forEach(function (event) {
+        if (actor.eventId == event.id) {
+            actor.payment.forEach(function (pay) {
+                if (pay.who == 'booker') {
+                    pay.amount = event.price
+                }
+                if (pay.who == 'bar') {
+                    pay.amount = event.price - event.commission.insurance - event.commission.treasury - event.commission.privateaser
+                }
+                if (pay.who == 'insurance') {
+                    pay.amount = event.commission.insurance
+                }
+                if (pay.who == 'treasury') {
+                    pay.amount = event.commission.treasury
+                }
+                if (pay.who == 'privateaser') {
+                    pay.amount = event.commission.privateaser
+                }
+            });
+        }
+    });
+});
+
 
 console.log(bars);
 console.log(events);
