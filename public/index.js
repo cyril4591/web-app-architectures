@@ -177,6 +177,13 @@ events.forEach(function (event) {
     event.commission.privateaser = commission - commission / 2 - event.persons
 });
 
+events.forEach(function (event) {
+    if (event.options.deductibleReduction) {
+        event.price = event.price + event.persons
+        event.commission.privateaser = event.commission.privateaser + event.persons
+    }
+});
+
 
 console.log(bars);
 console.log(events);
